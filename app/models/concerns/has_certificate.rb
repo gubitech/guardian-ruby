@@ -33,11 +33,13 @@ module HasCertificate
     x509_certificate.subject      = self.x509_name
 
     if options[:ca]
-      x509_certificate.public_key = options[:ca].private_key.public_key
       x509_certificate.issuer     = options[:ca].x509_name
-    elsif options[:public_key]
-      x509_certificate.public_key = options[:public_key]
+    else
       x509_certificate.issuer     = self.x509_name
+    end
+
+    if options[:public_key]
+      x509_certificate.public_key = options[:public_key]
     end
 
     if options[:is_ca]

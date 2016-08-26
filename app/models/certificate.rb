@@ -45,7 +45,7 @@ class Certificate < ApplicationRecord
       self.private_key = OpenSSL::PKey::RSA.new(2048)
     end
     self.serial = self.class.next_serial_for(self.certificate_authority)
-    new_certificate = self.generate_x509_certificate(:ca => self.certificate_authority, :expiry => self.expires_at, :serial => self.serial)
+    new_certificate = self.generate_x509_certificate(:ca => self.certificate_authority, :public_key => self.private_key.public_key, :expiry => self.expires_at, :serial => self.serial)
     self.certificate_authority.sign(new_certificate)
     self.certificate = new_certificate
   end
