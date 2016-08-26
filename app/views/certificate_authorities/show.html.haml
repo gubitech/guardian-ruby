@@ -1,7 +1,0 @@
-- @page_title = "Certificate Authority - #{@ca.common_name}"
-%h1= @ca.common_name
-%hr
-%h2 Certificate
-%pre~ @ca.certificate.to_s
-%hr
-%p= link_to "Back to list", certificates_path(:ca => @ca)

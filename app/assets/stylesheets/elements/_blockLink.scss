@@ -1,0 +1,12 @@
+.blockLink {
+  display: block;
+  padding: 12px 20px;
+
+  &:hover {
+    background: $gray-lightest;
+  }
+
+  &:active {
+    background: $gray-light;
+  }
+}

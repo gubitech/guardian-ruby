@@ -1,0 +1,26 @@
+.loginForm {
+  margin: 96px auto;
+  max-width: 480px;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.loginForm__footer {
+  margin: 24px 0 0;
+}
+
+.loginForm__header {
+  margin: 0 0 12px;
+}
+
+.loginForm__title {
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.loginForm__inner {
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, .25);
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 32px;
+}

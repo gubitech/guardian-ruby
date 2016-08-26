@@ -1,30 +1,50 @@
 - @page_title = "New Certificate"
-%h1 New Certificate
-= form_for @cert do |f|
-  = f.error_messages
-  %dl
-    %dt= f.label :certificate_authority_id
-    %dd= f.collection_select :certificate_authority_id, CertificateAuthority.order(:common_name), :id, :common_name
-    %dt= f.label :country
-    %dd= f.text_field :country, :autofocus => true
-    %dt= f.label :state
-    %dd= f.text_field :state
-    %dt= f.label :locality
-    %dd= f.text_field :locality
-    %dt= f.label :organization
-    %dd= f.text_field :organization
-    %dt= f.label :organizational_unit
-    %dd= f.text_field :organizational_unit
-    %dt= f.label :common_name
-    %dd= f.text_field :common_name
-    %dt= f.label :expires_at
-    %dd= f.datetime_select :expires_at, :start_year => Date.today.year, :end_year => Date.today.year + 25, :order => [:day, :month, :year]
 
-  %p
-    A private key will be generated and displayed on the next page. This key is not stored on the server
-    so you must make a note of it otherwise you won't be able to use this certificate.
-  %p
-    = f.submit
-    - if @cert.certificate_authority
-      or
-      = link_to "back to certificate list", certificates_path(:ca => @cert.certificate_authority)
+.pageHeader
+  %h1.heading.pageHeader__title
+    New Certificate
+
+= form_for @cert do |f|
+
+  = f.error_messages
+
+  .box
+    .boxItem.island
+      .formGroup
+        = f.label :certificate_authority_id, "Certificate Authority", :class => "formLabel formLabel--blocked"
+        = f.collection_select :certificate_authority_id, CertificateAuthority.order(:common_name), :id, :common_name, {}, :class => "formControl formControl--select"
+      .formGroup
+        = f.label :country, "Country", :class => "formLabel formLabel--blocked"
+        = f.text_field :country, :autofocus => true, :class => "formControl"
+      .formGroup.formRow
+        .formRow__column
+          = f.label :state, "State", :class => "formLabel formLabel--blocked"
+          = f.text_field :state, :class => "formControl"
+        .formRow__column
+          = f.label :locality, "Locality", :class => "formLabel formLabel--blocked"
+          = f.text_field :locality, :class => "formControl"
+      .formGroup.formRow
+        .formRow__column
+          = f.label :organization, "Organization", :class => "formLabel formLabel--blocked"
+          = f.text_field :organization, :class => "formControl"
+        .formRow__column
+          = f.label :organizational_unit, "Organizational Unit", :class => "formLabel formLabel--blocked"
+          = f.text_field :organizational_unit, :class => "formControl"
+      .formGroup
+        = f.label :common_name, "Common Name", :class => "formLabel formLabel--blocked"
+        = f.text_field :common_name, :class => "formControl"
+      .formGroup
+        = f.label :expires_at, "Expires At", :class => "formLabel formLabel--blocked"
+        .selectGroup
+          = f.datetime_select :expires_at, {:end_year => Date.today.year + 25, :order => [:day, :month, :year], :start_year => Date.today.year}, :class => "formControl formControl--select selectGroup__item"
+    .island.keyInfo
+      = image_tag "key.svg", :class => "keyInfo__icon"
+      %p.keyInfo__text
+        A private key will be generated and displayed on the next page. This key is not stored on the server so you must make a note of it otherwise you won't be able to use this certificate.
+    .formFooter
+      .formFooter__inner
+        = f.submit "Create", :class => "button button--positive formFooter__button", :data => {:disable_with => "Creating&hellip;".html_safe}
+        - if @cert.certificate_authority
+          %p.formFooter__subText
+            or
+            = link_to "back to list of certificates", certificates_path(:ca => @cert.certificate_authority), :class => "formFooter__subTextLink"

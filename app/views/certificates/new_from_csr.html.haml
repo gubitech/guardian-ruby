@@ -1,17 +1,28 @@
 - @page_title = "Upload CSR"
-%h1 Upload CSR
+
+.pageHeader
+  %h1.heading.pageHeader__title
+    Upload CSR
+
 = form_for @cert, :url => new_csr_certificates_path do |f|
-  = hidden_field_tag 'csr_form', '1'
+  = hidden_field_tag "csr_form", "1"
   = f.error_messages
-  %dl
-    %dt= f.label :certificate_authority_id
-    %dd= f.collection_select :certificate_authority_id, CertificateAuthority.order(:common_name), :id, :common_name
-    %dt= f.label :csr
-    %dd= f.text_area :csr, :rows => 15, :cols => 60, :autofocus => true
-    %dt= f.label :expires_at
-    %dd= f.datetime_select :expires_at, :start_year => Date.today.year, :end_year => Date.today.year + 25, :order => [:day, :month, :year]
-  %p
-    = f.submit
-    - if @cert.certificate_authority
-      or
-      = link_to "back to certificate list", certificates_path(:ca => @cert.certificate_authority)
+  .box
+    .island
+      .formGroup
+        = f.label :certificate_authority_id, "Certificate Authority", :class => "formLabel formLabel--block"
+        = f.collection_select :certificate_authority_id, CertificateAuthority.order(:common_name), :id, :common_name, {}, :class => "formControl formControl--select"
+      .formGroup
+        = f.label :csr, "CSR", :class => "formLabel formLabel--block"
+        = f.text_area :csr, :autofocus => true, :class => "formControl", :rows => 15
+      .formGroup
+        = f.label :expires_at, "Expires At", :class => "formLabel formLabel--block"
+        .selectGroup
+          = f.datetime_select :expires_at, {:end_year => Date.today.year + 25, :order => [:day, :month, :year], :start_year => Date.today.year}, :class => "formControl formControl--select selectGroup__item"
+    .formFooter
+      .formFooter__inner
+        = f.submit "Upload", :class => "button button--positive formFooter__button"
+        - if @cert.certificate_authority
+          %p.formFooter__subText
+            or
+            = link_to "back to certificate list", certificates_path(:ca => @cert.certificate_authority), :class => "formFooter__subTextLink"

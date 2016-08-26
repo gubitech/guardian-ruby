@@ -1,22 +1,31 @@
 - @page_title = "New Certificate Authority"
-%h1 New Certificate Authority
-= form_for @ca do |f|
-  = f.error_messages
-  %dl
-    %dt= f.label :country
-    %dd= f.text_field :country, :autofocus => true
-    %dt= f.label :state
-    %dd= f.text_field :state
-    %dt= f.label :locality
-    %dd= f.text_field :locality
-    %dt= f.label :organization
-    %dd= f.text_field :organization
-    %dt= f.label :organizational_unit
-    %dd= f.text_field :organizational_unit
-    %dt= f.label :common_name
-    %dd= f.text_field :common_name
 
-  %p
-    = f.submit
-    or
-    = link_to "back to list", root_path
+= form_for @ca, :html => {:class => "box"} do |f|
+  = f.error_messages
+  .island
+    .formGroup
+      = f.label :country, "Country", :class => "formLabel formLabel--blocked"
+      = f.text_field :country, :autofocus => true, :class => "formControl"
+    .formGroup.formRow
+      .formRow__column
+        = f.label :state, "State", :class => "formLabel formLabel--blocked"
+        = f.text_field :state, :class => "formControl"
+      .formRow__column
+        = f.label :locality, "Locality", :class => "formLabel formLabel--blocked"
+        = f.text_field :locality, :class => "formControl"
+    .formGroup.formRow
+      .formRow__column
+        = f.label :organization, "Organization", :class => "formLabel formLabel--blocked"
+        = f.text_field :organization, :class => "formControl"
+      .formRow__column
+        = f.label :organizational_unit, "Organizational Unit", :class => "formLabel formLabel--blocked"
+        = f.text_field :organizational_unit, :class => "formControl"
+    .formGroup
+      = f.label :common_name, "Common Name", :class => "formLabel formLabel--blocked"
+      = f.text_field :common_name, :class => "formControl"
+  .formFooter
+    .formFooter__inner
+      = f.submit "Create", :class => "button button--positive formFooter__button", :data => {:disable_with => "Creating&hellip;".html_safe}
+      %p.formFooter__subText
+        or
+        = link_to "back to list", root_path, :class => "formFooter__subTextLink"

@@ -1,0 +1,16 @@
+.flashMessage {
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, .25);
+  color: $white;
+  margin: 0 auto 16px;
+  padding: 24px 32px;
+  text-align: center;
+}
+
+.flashMessage--alert {
+  background: $pink;
+}
+
+.flashMessage--notice {
+  background: $green;
+}

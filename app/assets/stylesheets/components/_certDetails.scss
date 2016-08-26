@@ -1,0 +1,24 @@
+.certDetails {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.certDetails__desc {
+  border-left: 1px solid $gray-medium;
+  flex: 1 1 auto;
+  padding: 12px 20px;
+  width: calc(100% - 144px);
+}
+
+.certDetails__term {
+  flex: 0 0 auto;
+  font-weight: 700;
+  padding: 12px 0 12px 20px;
+  width: 144px;
+}
+
+.certDetails__desc ~ * {
+  border-top: 1px solid $gray-medium;
+}

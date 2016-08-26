@@ -1,0 +1,12 @@
+.selectGroup {
+  align-items: center;
+  display: flex;
+}
+
+.selectGroup__item {
+  width: auto;
+
+  &:not(:first-of-type) {
+    margin: 0 4px;
+  }
+}

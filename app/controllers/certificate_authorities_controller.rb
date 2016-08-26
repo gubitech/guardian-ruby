@@ -6,6 +6,7 @@ class CertificateAuthoritiesController < ApplicationController
 
   def show
     @ca = CertificateAuthority.find(params[:id])
+    send_data @ca.certificate.to_pem, :filename => "CertificateAuthority.crt", :disposition => "attachment", :type => "text/plain"
   end
 
   def new

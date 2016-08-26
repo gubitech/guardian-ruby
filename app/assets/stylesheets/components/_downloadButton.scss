@@ -1,0 +1,31 @@
+.downloadButton {
+  text-align: center;
+}
+
+.downloadButton__container {
+  background: $green;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: inline-flex;
+
+  &:hover {
+    background: lighten($green, 5%);
+  }
+
+  &:active {
+    background: darken($green, 5%);
+  }
+}
+
+.downloadButton__icon {
+  display: block;
+  height: 24px;
+  margin: 0 8px 0 0;
+  width: 24px;
+}
+
+.downloadButton__text {
+  color: $white;
+  font-weight: 700;
+}

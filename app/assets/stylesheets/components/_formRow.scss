@@ -1,0 +1,9 @@
+.formRow {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+.formRow__column {
+  width: calc(50% - 10px);
+}

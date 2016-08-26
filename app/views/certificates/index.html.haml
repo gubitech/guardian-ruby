@@ -1,26 +1,47 @@
 - @page_title = "Certificates - #{@ca.common_name}"
-%h1= @ca.common_name
-%table{:border => 1, :width => "100%"}
-  %thead
-    %tr
-      %td Serial
-      %td Common Name
-      %td Description
-      %td Expiry
-  %tbody
-    - if @certs.empty?
-      %tr
-        %td{:colspan => 4} There are no certificates for this CA yet.
-    - else
-      - for cert in @certs
-        %tr
-          %td= cert.serial
-          %td= link_to cert.common_name, certificate_path(cert)
-          %td= cert.description
-          %td= cert.expires_at
-%ul
-  %li= link_to "Create new certificate", new_certificate_path(:ca => @ca)
-  %li= link_to "Upload CSR", new_csr_certificates_path(:ca => @ca)
-  %li= link_to "Download CA certificate", @ca
-  %li= link_to "Back to CA list", root_path
 
+.pageHeader
+  %h1.heading.pageHeader__title
+    = @ca.common_name
+  = link_to "Upload CSR &rarr;".html_safe, new_csr_certificates_path(:ca => @ca), :class => "pageHeader__link pageHeader__link--generic"
+  = link_to "Add a new certificate &rarr;".html_safe, new_certificate_path(:ca => @ca), :class => "pageHeader__link"
+
+.box.module
+  %table.certTable
+    %thead.certTable__head
+      %tr{:height => "36px"}
+        %td.certTable__column.certTable__column--serial
+          Serial
+        %td.certTable__column.certTable__column--name
+          Common Name
+        %td.certTable__column.certTable__column--desc
+          Description
+        %td.certTable__column.certTable__column--expiry
+          Expiry
+    %tbody
+      - if @certs.any?
+        - @certs.each do |cert|
+          %tr.certTable__row{:style => "height: 48px;"}
+            %td.certTable__column.certTable__column--serial
+              = cert.serial
+            %td.certTable__column.certTable__column--name
+              = link_to cert.common_name, certificate_path(cert), :class => "certTable__link"
+            %td.certTable__column.certTable__column--desc
+              = cert.description
+            %td.certTable__column.certTable__column--expiry
+              = cert.expires_at
+      - else
+        %tr
+          %td{:colspan => 4}
+            %p.emptyState.island
+              There are no certificates for this certificate authority yet.
+
+.module
+  .downloadButton
+    = link_to @ca, :class => "downloadButton__container", :data => {:turbolinks => 'false'} do
+      = image_tag "download.svg", :class => "downloadButton__icon"
+      %span.downloadButton__text
+        Download CA Certificate
+
+.goBack
+  = link_to "&larr; Go back to list of certificate authorities".html_safe, root_path, :class => "goBack__link"

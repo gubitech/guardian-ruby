@@ -1,0 +1,20 @@
+.keyInfo {
+  align-items: center;
+  background: lighten($blue, 45%);
+  border-top: 1px solid lighten($blue, 30%);
+  display: flex;
+  margin: 0 0 -8px;
+}
+
+.keyInfo__icon {
+  display: block;
+  flex: 0 0 auto;
+  height: auto;
+  margin: 0 18px 0 0;
+  width: 36px;
+}
+
+.keyInfo__text {
+  color: $blue;
+  flex: 1 1 auto;
+}

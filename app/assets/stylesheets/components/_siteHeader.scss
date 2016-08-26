@@ -1,0 +1,48 @@
+.siteHeader {
+  background: $white;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+  margin: 0 0 32px;
+  padding: 32px 0;
+}
+
+.siteHeader__action {
+  &:not(:last-of-type) {
+    margin: 0 10px 0 0;
+  }
+}
+
+.siteHeader__link {
+  border-radius: 2px;
+  color: $white;
+  display: block;
+  padding: 4px 12px;
+}
+
+.siteHeader__link--certificates {
+  background: lighten($green, 35%);
+  color: darken($green, 20%);
+}
+
+.siteHeader__link--logout {
+  background: lighten($pink, 35%);
+  color: darken($pink, 5%);
+}
+
+.siteHeader__link--users {
+  background: lighten($purple, 35%);
+  color: darken($purple, 10%);
+}
+
+.siteHeader__container {
+  align-items: center;
+  display: flex;
+}
+
+.siteHeader__actions {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.siteHeader__title {
+  flex: 1 1 auto;
+}

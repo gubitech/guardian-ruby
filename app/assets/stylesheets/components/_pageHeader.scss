@@ -1,0 +1,25 @@
+.pageHeader {
+  align-items: center;
+  display: flex;
+  margin: 0 0 24px;
+}
+
+.pageHeader__link {
+  color: darken($green, 10%);
+  flex: 0 0 auto;
+  margin: 0 0 0 24px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.pageHeader__link--generic {
+  color: $blue;
+}
+
+.pageHeader__title {
+  flex: 1 1 auto;
+  font-size: 22px;
+  line-height: 24px;
+}

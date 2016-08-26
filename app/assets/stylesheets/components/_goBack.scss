@@ -1,0 +1,17 @@
+.goBack {
+  margin: 16px 0 0;
+  text-align: center;
+}
+
+.goBack__link {
+  color: #777777;
+
+  &:hover {
+    color: darken(#777777, 5%);
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: darken(#777777, 10%);
+  }
+}

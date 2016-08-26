@@ -1,13 +1,16 @@
 - @page_title = "Certificate Authorities"
-%h1 Certificate Authorities
-- if @cas.empty?
-  %p There are no certificate authorites yet.
-- else
-  %ul
-    - for ca in @cas
-      %li= link_to ca.common_name, certificates_path(:ca => ca)
-%hr
-%ul
-  %li= link_to "Create new certificate authority", new_certificate_authority_path
-  %li= link_to "Manage users", users_path
-  %li= link_to "Logout", logout_path, :method => :delete
+
+.pageHeader
+  %h1.heading.pageHeader__title
+    Certificate Authorities
+  = link_to "Add a new certificate authority &rarr;".html_safe, new_certificate_authority_path, :class => "pageHeader__link"
+
+.box
+  - if @cas.empty?
+    %p.emptyState.island
+      There are no certificate authorites yet.
+  - else
+    %ul
+      - @cas.each do |ca|
+        %li.boxItem
+          = link_to ca.common_name, certificates_path(:ca => ca), :class => "heading blockLink"

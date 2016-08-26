@@ -1,32 +1,52 @@
 - @page_title = "Certificate - #{@cert.common_name}"
-%h1= @cert.common_name
-%dl
-  %dt Country
-  %dd= @cert.country
-  - if @cert.state
-    %dt State
-    %dd= @cert.state
-  - if @cert.locality
-    %dt Locality
-    %dd= @cert.locality
-  - if @cert.organization
-    %dt Organization
-    %dd= @cert.organization
-  - if @cert.organizational_unit
-    %dt Organizational Unit
-    %dd= @cert.organizational_unit
-  %dt Common Name
-  %dd= @cert.common_name
-%hr
+
+.pageHeader
+  %h1.heading.pageHeader__title
+    = @cert.common_name
+
+.box.module
+  %dl.certDetails
+    %dt.certDetails__term
+      Country
+    %dd.certDetails__desc
+      = @cert.country
+    - if @cert.state
+      %dt.certDetails__term
+        State
+      %dd.certDetails__desc
+        = @cert.state
+    - if @cert.locality
+      %dt.certDetails__term
+        Locality
+      %dd.certDetails__desc
+        = @cert.locality
+    - if @cert.organization
+      %dt.certDetails__term
+        Organization
+      %dd.certDetails__desc
+        = @cert.organization
+        - if @cert.organizational_unit
+          (#{@cert.organizational_unit})
+
 - if flash[:private_key]
-  %h2 Private key
-  %pre~ flash[:private_key]
-  %hr
-%h2 Certificate
-%pre~ @cert.certificate.to_s
-%hr
+  .box.module.privateKey
+    .boxHeader
+      %h2.heading
+        Private Key
+    %pre.island~ flash[:private_key]
+
+.box.module
+  .boxHeader
+    %h2.heading
+      Certificate
+  %pre.island~ @cert.certificate.to_s
+
 - if @cert.csr
-  %h2 CSR
-  %pre~ @cert.csr
-  %hr
-%p= link_to "Back to list", certificates_path(:ca => @cert.certificate_authority)
+  .box.module
+    .boxHeader
+      %h2.heading
+        CSR
+    %pre.island~ @cert.csr
+
+%p.goBack
+  = link_to "&larr; Go back to list of certificates".html_safe, certificates_path(:ca => @cert.certificate_authority), :class => "goBack__link"
