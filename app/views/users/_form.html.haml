@@ -1,0 +1,11 @@
+= form_for @user do |f|
+  = f.error_messages
+  %dl
+    %dt= f.label :username
+    %dd= f.text_field :username
+    %dt= f.label :password
+    %dd= f.password_field :password
+  %p
+    = f.submit
+    or
+    = link_to "back to list", users_path

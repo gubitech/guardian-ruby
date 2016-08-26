@@ -1,0 +1,9 @@
+- @page_title = "Login"
+%h1 Login
+= form_tag do
+  %dl
+    %dt= label_tag 'username'
+    %dd= text_field_tag 'username', '', :autofocus => true
+    %dt= label_tag 'password'
+    %dd= password_field_tag 'password'
+  %p= submit_tag "Login"

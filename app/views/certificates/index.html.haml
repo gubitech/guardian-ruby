@@ -1,0 +1,26 @@
+- @page_title = "Certificates - #{@ca.common_name}"
+%h1= @ca.common_name
+%table{:border => 1, :width => "100%"}
+  %thead
+    %tr
+      %td Serial
+      %td Common Name
+      %td Description
+      %td Expiry
+  %tbody
+    - if @certs.empty?
+      %tr
+        %td{:colspan => 4} There are no certificates for this CA yet.
+    - else
+      - for cert in @certs
+        %tr
+          %td= cert.serial
+          %td= link_to cert.common_name, certificate_path(cert)
+          %td= cert.description
+          %td= cert.expires_at
+%ul
+  %li= link_to "Create new certificate", new_certificate_path(:ca => @ca)
+  %li= link_to "Upload CSR", new_csr_certificates_path(:ca => @ca)
+  %li= link_to "Download CA certificate", @ca
+  %li= link_to "Back to CA list", root_path
+

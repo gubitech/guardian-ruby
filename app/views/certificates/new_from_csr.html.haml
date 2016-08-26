@@ -1,0 +1,17 @@
+- @page_title = "Upload CSR"
+%h1 Upload CSR
+= form_for @cert, :url => new_csr_certificates_path do |f|
+  = hidden_field_tag 'csr_form', '1'
+  = f.error_messages
+  %dl
+    %dt= f.label :certificate_authority_id
+    %dd= f.collection_select :certificate_authority_id, CertificateAuthority.order(:common_name), :id, :common_name
+    %dt= f.label :csr
+    %dd= f.text_area :csr, :rows => 15, :cols => 60, :autofocus => true
+    %dt= f.label :expires_at
+    %dd= f.datetime_select :expires_at, :start_year => Date.today.year, :end_year => Date.today.year + 25, :order => [:day, :month, :year]
+  %p
+    = f.submit
+    - if @cert.certificate_authority
+      or
+      = link_to "back to certificate list", certificates_path(:ca => @cert.certificate_authority)

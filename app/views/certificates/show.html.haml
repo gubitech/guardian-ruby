@@ -1,0 +1,32 @@
+- @page_title = "Certificate - #{@cert.common_name}"
+%h1= @cert.common_name
+%dl
+  %dt Country
+  %dd= @cert.country
+  - if @cert.state
+    %dt State
+    %dd= @cert.state
+  - if @cert.locality
+    %dt Locality
+    %dd= @cert.locality
+  - if @cert.organization
+    %dt Organization
+    %dd= @cert.organization
+  - if @cert.organizational_unit
+    %dt Organizational Unit
+    %dd= @cert.organizational_unit
+  %dt Common Name
+  %dd= @cert.common_name
+%hr
+- if flash[:private_key]
+  %h2 Private key
+  %pre~ flash[:private_key]
+  %hr
+%h2 Certificate
+%pre~ @cert.certificate.to_s
+%hr
+- if @cert.csr
+  %h2 CSR
+  %pre~ @cert.csr
+  %hr
+%p= link_to "Back to list", certificates_path(:ca => @cert.certificate_authority)

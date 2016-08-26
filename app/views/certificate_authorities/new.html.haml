@@ -1,0 +1,22 @@
+- @page_title = "New Certificate Authority"
+%h1 New Certificate Authority
+= form_for @ca do |f|
+  = f.error_messages
+  %dl
+    %dt= f.label :country
+    %dd= f.text_field :country, :autofocus => true
+    %dt= f.label :state
+    %dd= f.text_field :state
+    %dt= f.label :locality
+    %dd= f.text_field :locality
+    %dt= f.label :organization
+    %dd= f.text_field :organization
+    %dt= f.label :organizational_unit
+    %dd= f.text_field :organizational_unit
+    %dt= f.label :common_name
+    %dd= f.text_field :common_name
+
+  %p
+    = f.submit
+    or
+    = link_to "back to list", root_path

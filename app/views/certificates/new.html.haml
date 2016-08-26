@@ -1,0 +1,30 @@
+- @page_title = "New Certificate"
+%h1 New Certificate
+= form_for @cert do |f|
+  = f.error_messages
+  %dl
+    %dt= f.label :certificate_authority_id
+    %dd= f.collection_select :certificate_authority_id, CertificateAuthority.order(:common_name), :id, :common_name
+    %dt= f.label :country
+    %dd= f.text_field :country, :autofocus => true
+    %dt= f.label :state
+    %dd= f.text_field :state
+    %dt= f.label :locality
+    %dd= f.text_field :locality
+    %dt= f.label :organization
+    %dd= f.text_field :organization
+    %dt= f.label :organizational_unit
+    %dd= f.text_field :organizational_unit
+    %dt= f.label :common_name
+    %dd= f.text_field :common_name
+    %dt= f.label :expires_at
+    %dd= f.datetime_select :expires_at, :start_year => Date.today.year, :end_year => Date.today.year + 25, :order => [:day, :month, :year]
+
+  %p
+    A private key will be generated and displayed on the next page. This key is not stored on the server
+    so you must make a note of it otherwise you won't be able to use this certificate.
+  %p
+    = f.submit
+    - if @cert.certificate_authority
+      or
+      = link_to "back to certificate list", certificates_path(:ca => @cert.certificate_authority)
