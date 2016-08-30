@@ -25,11 +25,13 @@ module HasCertificate
   def generate_x509_certificate(options = {})
     options[:serial]              ||= 1
     options[:expiry]              ||= 1.year.from_now
+    options[:version]             ||= 2 # 0x2 is actually v3
 
     x509_certificate              = OpenSSL::X509::Certificate.new
     x509_certificate.not_before   = Time.now
     x509_certificate.not_after    = options[:expiry]
     x509_certificate.serial       = options[:serial]
+    x509_certificate.version      = options[:version]
     x509_certificate.subject      = self.x509_name
 
     if options[:ca]
