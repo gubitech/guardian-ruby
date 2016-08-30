@@ -72,7 +72,7 @@ class Certificate < ApplicationRecord
   end
 
   def self.next_serial_for(ca)
-    (where(:certificate_authority_id => ca.id).order(:serial => :desc).first&.serial || 0) + 1
+    (where(:certificate_authority_id => ca.id).order(:serial => :desc).first&.serial || 1) + 1
   end
 
 end
