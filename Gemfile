@@ -15,6 +15,7 @@ gem 'nilify_blanks'
 gem 'authie'
 gem 'dynamic_form'
 gem 'hashie'
+gem 'foreman'
 
 group :development, :test do
   gem 'byebug'
