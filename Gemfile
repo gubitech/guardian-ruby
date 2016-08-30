@@ -14,6 +14,7 @@ gem 'nifty-utils'
 gem 'nilify_blanks'
 gem 'authie'
 gem 'dynamic_form'
+gem 'hashie'
 
 group :development, :test do
   gem 'byebug'

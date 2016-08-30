@@ -1,0 +1,21 @@
+mysql:
+  host: localhost
+  port: 3306
+  username: root
+  password:
+  database: guardian
+
+web_server:
+  bind_address: 127.0.0.1
+  port: 5000
+  max_threads: 5
+
+web:
+  protocol: http
+  host: localhost:5000
+
+rails:
+  environment: production
+  # Replace this key with a new random key. You can generate one using
+  # `bundle exec rake secret` from the root of the application
+  secret_key: ad1a6538c2b3cb4f231fad413898ce6144712232b24676d13879eb8704c61fe23b5f8e41e7a519498a8c78c2a95875412052f76e202bf6af9e7394a13d1eb8f8

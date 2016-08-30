@@ -9,7 +9,7 @@ At present, there is no pretty UI for this application. It is very simple.
 
 * Ruby 2.3 or higher
 * Bundler
-* MySQL database (configured in `config/database.yml` once cloned)
+* MySQL database (configured in `config/guardian.yml` once cloned)
 
 ## Installation
 
