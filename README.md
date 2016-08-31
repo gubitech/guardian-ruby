@@ -3,8 +3,6 @@
 A web interface for running your own certificate authority. Ideal for generating
 certificates for internal-use only.
 
-At present, there is no pretty UI for this application. It is very simple.
-
 ## Requirements
 
 * Ruby 2.3 or higher
