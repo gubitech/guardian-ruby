@@ -44,13 +44,15 @@ module HasCertificate
       x509_certificate.public_key = options[:public_key]
     end
 
+    extension_factory = OpenSSL::X509::ExtensionFactory.new
     if options[:is_ca]
-      extension_factory = OpenSSL::X509::ExtensionFactory.new
       extension_factory.subject_certificate = x509_certificate
       extension_factory.issuer_certificate = x509_certificate
       x509_certificate.add_extension(extension_factory.create_extension('subjectKeyIdentifier', 'hash'))
       x509_certificate.add_extension(extension_factory.create_extension('basicConstraints', 'CA:TRUE', true))
       x509_certificate.add_extension(extension_factory.create_extension('keyUsage', 'cRLSign,keyCertSign', true))
+    elsif options[:ca]
+      x509_certificate.add_extension(extension_factory.create_extension('authorityInfoAccess', "OCSP;URI:#{Guardian.oscp_base_url}/ocsp/#{options[:ca].id}"))
     end
 
     x509_certificate

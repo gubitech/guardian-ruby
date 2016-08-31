@@ -40,4 +40,7 @@ module Guardian
     end
   end
 
+  def self.oscp_base_url
+    self.config.web.protocol + '://' + self.config.web.host
+  end
 end
