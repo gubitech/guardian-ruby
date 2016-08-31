@@ -5,16 +5,11 @@
   .box
     .island
       .formGroup
-        = f.label :username, "Username", :class => "formLabel formLabel--blocked"
-        = f.text_field :username, :autofocus => true, :class => "formControl"
-      .formGroup
-        = f.label :password, "Password", :class => "formLabel formLabel--blocked"
-        = f.password_field :password, :class => "formControl"
+        = f.label :email_address, "E-Mail Address", :class => "formLabel formLabel--blocked"
+        = f.text_field :email_address, :autofocus => true, :class => "formControl"
     .formFooter
       .formFooter__inner
-        = f.submit "Create", :class => "button button--positive formFooter__button", :data => {:disable_with => "Creating&hellip;".html_safe}
+        = f.submit "Send Invite", :class => "button button--positive formFooter__button", :data => {:disable_with => "Creating&hellip;".html_safe}
         %p.formFooter__subText
           or
           = link_to "back to list", users_path, :class => "formFooter__subTextLink"
-        - if f.object.persisted?
-          = link_to "Delete", @user, :class => "formFooter__delete", :data => {:confirm => "Are you sure you wish to remove #{@user.username}?"}, :method => :delete

@@ -16,6 +16,12 @@ gem 'authie'
 gem 'dynamic_form'
 gem 'hashie'
 gem 'foreman'
+gem 'omniauth'
+
+require_relative './lib/guardian/config'
+if Guardian.yaml_config['auth'] && strategy = Guardian.yaml_config['auth']['strategy']
+  gem "omniauth-#{strategy}"
+end
 
 group :development, :test do
   gem 'byebug'

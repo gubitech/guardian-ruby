@@ -8,4 +8,5 @@
 %ul.box
   - @users.each do |user|
     %li.boxItem
-      = link_to user.username, edit_user_path(user), :class => "blockLink heading"
+      = user.description
+      = link_to "Revoke", user, :method => :delete, :data => {:confirm => "Are you sure you wish to revoke this user's access?"}

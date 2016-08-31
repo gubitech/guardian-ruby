@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action { params[:id] && @user = User.find(params[:id]) }
 
   def index
-    @users = User.order(:username)
+    @users = User.order(:name).to_a
   end
 
   def new
@@ -11,29 +11,22 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:username, :password))
+    @user = User.new(params.require(:user).permit(:email_address))
     if @user.save
-      redirect_to users_path, :notice => "#{@user.username} has been created successfully"
+      UserMailer.user_invite(@user).deliver
+      redirect_to users_path, :notice => "An invite has been sent to #{@user.email_address}"
     else
       render 'new'
     end
   end
 
-  def update
-    if @user.update(params.require(:user).permit(:username, :password))
-      redirect_to users_path, :notice => "#{@user.username} has been updated successfully"
-    else
-      render 'edit'
-    end
-  end
-
   def destroy
+    @user = User.find(params[:id])
     if @user == current_user
-      redirect_to edit_user_path(@user), :alert => "You cannot remove yourself"
-      return
+      return redirect_to users_path, :alert => "You cannot revoke your own access"
     end
     @user.destroy
-    redirect_to users_path, :notice => "#{@user.username} has been removed successfully"
+    redirect_to users_path, :notice => "#{@user.description} has been removed successfully"
   end
 
 end

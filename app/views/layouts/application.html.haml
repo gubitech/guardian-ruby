@@ -7,8 +7,8 @@
     = csrf_meta_tags
     = stylesheet_link_tag "application", "data-turbolinks-track" => "reload"
     = javascript_include_tag "application", "data-turbolinks-track" => "reload"
-  %body{:class => ("loginPage" if is_login_page?)}
-    - if is_login_page?
+  %body{:class => ("loginPage" if @login_page)}
+    - if @login_page
       = yield
     - else
       .siteHeader

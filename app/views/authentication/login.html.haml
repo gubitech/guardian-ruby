@@ -1,16 +1,6 @@
+- @login_page = true
 - @page_title = "Login"
-
-= form_tag "/login", :class => "loginForm", :method => :post do
-  = display_flash
+.loginForm
   .loginForm__inner
-    .loginForm__header
-      %h1.heading.heading--large.loginForm__title
-        Login
-    .formGroup
-      = label_tag "username", "Username", :style => "display: none;"
-      = text_field_tag "username", "", :autofocus => true, :class => "formControl formControl--large", :placeholder => "Username"
-    .formGroup
-      = label_tag "password", "Password", :style => "display: none;"
-      = password_field_tag "password", "", :class => "formControl formControl--large", :placeholder => "Password"
-    .loginForm__footer
-      = submit_tag "Login", :class => "button button--blocked button--positive"
+    .loginForm__button= link_to "Login using #{Guardian.config.auth.description}", "/auth/#{Guardian.config.auth.strategy}", :class => 'button button--positive'
+

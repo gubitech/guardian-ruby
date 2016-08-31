@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831083720) do
+ActiveRecord::Schema.define(version: 20160831085539) do
 
   create_table "authie_sessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "token"
@@ -75,6 +75,11 @@ ActiveRecord::Schema.define(version: 20160831083720) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "email_address"
+    t.string   "invite_token"
   end
 
 end

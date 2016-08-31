@@ -1,0 +1,7 @@
+- @login_page = true
+- @page_title = "Login"
+
+.loginForm
+  .loginForm__inner
+    .loginForm__button= link_to "Continue using #{Guardian.config.auth.description}", "/auth/#{Guardian.config.auth.strategy}", :class => 'button button--positive'
+

@@ -26,3 +26,16 @@ certificate_defaults:
   locality: Poole
   organization: Example Corporation
   duration: 94672800 # 3 years (in seconds)
+
+auth:
+  strategy: atech
+  client_key:
+  client_secret:
+  scopes:
+  description: aTech Identity
+
+smtp:
+  host: localhost
+  username: null
+  password: null
+  from_address: Guardian <guardian@example.com>
