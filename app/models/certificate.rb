@@ -16,6 +16,7 @@
 #  csr                      :text(65535)
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
+#  revoked_at               :datetime
 #
 
 class Certificate < ApplicationRecord
@@ -43,6 +44,15 @@ class Certificate < ApplicationRecord
     else
       nil
     end
+  end
+
+  def revoke
+    self.revoked_at = Time.now
+    self.save
+  end
+
+  def revoked?
+    self.revoked_at.present?
   end
 
   def auto_generate_certificate

@@ -21,7 +21,7 @@
     %tbody
       - if @certs.any?
         - @certs.each do |cert|
-          %tr.certTable__row{:style => "height: 48px;"}
+          %tr.certTable__row{:style => "height: 48px;", :class => cert.revoked? ? "certTable__row--revoked" : nil}
             %td.certTable__column.certTable__column--serial
               = cert.serial
             %td.certTable__column.certTable__column--name

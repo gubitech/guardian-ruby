@@ -1,12 +1,13 @@
 class CertificatesController < ApplicationController
 
+  before_action { params[:id] && @cert = Certificate.find(params[:id]) }
+
   def index
     @ca = CertificateAuthority.find(params[:ca])
     @certs = @ca.certificates.order(:serial => :desc)
   end
 
   def show
-    @cert = Certificate.find(params[:id])
   end
 
   def new
@@ -39,6 +40,14 @@ class CertificatesController < ApplicationController
       redirect_to certificate_path(@cert), :notice => "Certificate has been s successfully"
     else
       render 'new_from_csr'
+    end
+  end
+
+  def revoke
+    if @cert.revoke
+      redirect_to certificate_path(@cert), :notice => "Certificate has been marked as revoked."
+    else
+      redirect_to certificate_path(@cert), :alert => @cert.errors.full_messages.to_sentence
     end
   end
 

@@ -3,6 +3,8 @@
 .pageHeader
   %h1.heading.pageHeader__title
     = @cert.common_name
+  - unless @cert.revoked?
+    = link_to "Revoke Certificate &rarr;".html_safe, revoke_certificate_path(@cert), :class => "pageHeader__link pageHeader__link--destruction", :method => :post, :data => {:confirm => "Are you sure you wish to revoke this certificate?"}
 
 .box.module
   %dl.certDetails
@@ -27,6 +29,11 @@
         = @cert.organization
         - if @cert.organizational_unit
           (#{@cert.organizational_unit})
+    - if @cert.revoked?
+      %dt.certDetails__term
+        Revokation
+      %dd.certDetails__desc
+        Revoked at #{@cert.revoked_at.to_s}
 
 - if flash[:private_key]
   .box.module.privateKey

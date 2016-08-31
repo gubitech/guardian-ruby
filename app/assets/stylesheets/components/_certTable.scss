@@ -54,3 +54,13 @@
 .certTable__row:not(:last-of-type) {
   border-bottom: 1px solid $gray-medium;
 }
+
+.certTable__row--revoked {
+  text-decoration:line-through;
+  color:#999;
+  a {
+    text-decoration:none;
+    color:#999;
+    &:hover { color:inherit;}
+  }
+}
