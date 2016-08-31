@@ -34,7 +34,7 @@ class Certificate < ApplicationRecord
   default_value :state, -> { Guardian.config.certificate_defaults.state }
   default_value :locality, -> { Guardian.config.certificate_defaults.locality }
   default_value :organization, -> { Guardian.config.certificate_defaults.organization }
-  default_value :expires_at, -> { Time.now + (Guardian.config.certificate_defaults.length || 3.years).to_i }
+  default_value :expires_at, -> { Time.now + (Guardian.config.certificate_defaults.duration || 3.years).to_i }
 
   def description
     if organization && organizational_unit
