@@ -15,18 +15,18 @@
         = f.collection_select :certificate_authority_id, CertificateAuthority.order(:common_name), :id, :common_name, {}, :class => "formControl formControl--select"
       .formGroup
         = f.label :country, "Country", :class => "formLabel formLabel--blocked"
-        = f.text_field :country, :autofocus => true, :class => "formControl"
+        = f.text_field :country, :autofocus => true, :class => "formControl", :placeholder => Guardian.config.certificate_defaults.country
       .formGroup.formRow
         .formRow__column
           = f.label :state, "State", :class => "formLabel formLabel--blocked"
-          = f.text_field :state, :class => "formControl"
+          = f.text_field :state, :class => "formControl", :placeholder => Guardian.config.certificate_defaults.state
         .formRow__column
           = f.label :locality, "Locality", :class => "formLabel formLabel--blocked"
-          = f.text_field :locality, :class => "formControl"
+          = f.text_field :locality, :class => "formControl", :placeholder => Guardian.config.certificate_defaults.locality
       .formGroup.formRow
         .formRow__column
           = f.label :organization, "Organization", :class => "formLabel formLabel--blocked"
-          = f.text_field :organization, :class => "formControl"
+          = f.text_field :organization, :class => "formControl", :placeholder => Guardian.config.certificate_defaults.organization
         .formRow__column
           = f.label :organizational_unit, "Organizational Unit", :class => "formLabel formLabel--blocked"
           = f.text_field :organizational_unit, :class => "formControl"

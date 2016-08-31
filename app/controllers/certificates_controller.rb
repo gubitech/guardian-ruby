@@ -11,7 +11,7 @@ class CertificatesController < ApplicationController
 
   def new
     @cert = Certificate.new
-    @cert.expires_at = 3.years.from_now
+    @cert.expires_at = Time.at(Time.now + (Guardian.config.certificate_defaults.duration || 3.years).to_i)
     if params[:ca]
       @cert.certificate_authority = CertificateAuthority.find(params[:ca])
     end

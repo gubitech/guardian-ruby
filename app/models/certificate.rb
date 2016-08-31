@@ -29,6 +29,12 @@ class Certificate < ApplicationRecord
   validates :serial, :uniqueness => {:scope => :certificate_authority_id}
   validates :expires_at, :presence => true
 
+  default_value :country, -> { Guardian.config.certificate_defaults.country }
+  default_value :state, -> { Guardian.config.certificate_defaults.state }
+  default_value :locality, -> { Guardian.config.certificate_defaults.locality }
+  default_value :organization, -> { Guardian.config.certificate_defaults.organization }
+  default_value :expires_at, -> { Time.now + (Guardian.config.certificate_defaults.length || 3.years).to_i }
+
   def description
     if organization && organizational_unit
       "#{organization} (#{organizational_unit})"
