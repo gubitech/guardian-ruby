@@ -11,8 +11,8 @@ web_server:
   max_threads: 5
 
 web:
-  protocol: http
-  host: localhost:5000
+  protocol: https
+  host: ca.example.com
 
 rails:
   environment: production
